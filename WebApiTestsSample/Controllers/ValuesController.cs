@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
+using WebApiTestsSample.Models;
 
 namespace WebApiTestsSample.Controllers
 {
@@ -8,10 +10,11 @@ namespace WebApiTestsSample.Controllers
         // GET api/values
         public IHttpActionResult Get()
         {
-            return Ok(new[]
+            using (var db = new ApiDataContext())
             {
-                "value1", "value2"
-            });
+                var l = db.Items.ToList();
+                return Ok(l);
+            }
         }
 
         // GET api/values/5

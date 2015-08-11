@@ -1,6 +1,9 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Data.Entity;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
+using WebApiTestsSample.Migrations;
+using WebApiTestsSample.Models;
 
 namespace WebApiTestsSample
 {
@@ -9,6 +12,7 @@ namespace WebApiTestsSample
         protected void Application_Start()
         {
             Configure();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApiDataContext, Configuration>());
         }
 
         public static void Configure(HttpConfiguration config = null)
