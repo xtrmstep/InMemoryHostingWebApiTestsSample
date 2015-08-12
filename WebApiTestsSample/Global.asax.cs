@@ -1,7 +1,9 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
+using log4net.Config;
 using WebApiTestsSample.Migrations;
 using WebApiTestsSample.Models;
 
@@ -17,6 +19,9 @@ namespace WebApiTestsSample
 
         public static void Configure(HttpConfiguration config = null)
         {
+            XmlConfigurator.Configure();
+            //log4net.LogicalThreadContext.Properties["GroupId"] = Guid.NewGuid().ToString();
+
             #region Initialize the Web API
             if (config == null)
             {
