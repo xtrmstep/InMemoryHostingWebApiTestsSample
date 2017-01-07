@@ -50,7 +50,9 @@ namespace WebApiTestsSample.Tests
 
         public HttpClient CreateServer()
         {
-            return new HttpClient(httpServer);
+            // httpServer will be disposed after the 1st usage w/o second parameter
+            // in order to use the server for several unit tests it should be set to False
+            return new HttpClient(httpServer, false);
         }
     }
 }
